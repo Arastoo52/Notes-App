@@ -5,16 +5,7 @@ import axios from "axios";
 
 export default function App() {
 
-  const [notes, setnotes] = useState([
-    {
-      title:"",
-
-      description:""
-    },
-    
-  ]
-
-  )
+  const [notes, setnotes] = useState([])
   
 
 
@@ -23,7 +14,7 @@ export default function App() {
      axios.get("https://notes-app-5-8zq8.onrender.com/notes")
 
     .then(res=>{
-      setnotes(res.data)
+      setnotes(res.data.notes)
     })
 
 

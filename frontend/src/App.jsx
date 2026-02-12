@@ -20,10 +20,10 @@ export default function App() {
 
 
   function featchNotes(){
-     axios.get("https://notes-app-5-8zq8.onrender.com//notes")
+     axios.get("https://notes-app-5-8zq8.onrender.com/notes")
 
     .then(res=>{
-      setnotes(res.data.notes)
+      setnotes(res.data)
     })
 
 

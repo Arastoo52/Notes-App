@@ -14,7 +14,17 @@ export default function App() {
      axios.get("https://notes-app-5-8zq8.onrender.com/notes")
 
     .then(res=>{
-      setnotes(res.data.notes)
+      console.log("API Response:", res.data)
+      if(res.data.notes && Array.isArray(res.data.notes)){
+        setnotes(res.data.notes)
+      } else {
+        console.error("Notes is not an array:", res.data.notes)
+        setnotes([])
+      }
+    })
+    .catch(err=>{
+      console.error("API Error:", err.message)
+      setnotes([])
     })
 
 
@@ -125,8 +135,8 @@ function handleDelete(noteid){
         <div className="flex flex-wrap gap-10">
 
        {
-        notes.map(note=>{
-         return <div className="w-72 f h-60 bg-orange-300 rounded-3xl p-6">
+        notes && Array.isArray(notes) && notes.length > 0 ? notes.map(note=>{
+         return <div key={note._id} className="w-72 f h-60 bg-orange-300 rounded-3xl p-6">
 
             <div className="top flex  justify-between text-center items-center "><h1 className="text-xl font-bold tracking-tight ">{note.title}</h1>
         <div onClick={()=>{handleDelete(note._id)}} className="bg-red-500 p-2 rounded-full cursor-pointer hover:bg-red-600 transition">
@@ -142,7 +152,7 @@ function handleDelete(noteid){
             
 
           </div>
-        })
+        }) : <p className="text-gray-500">No notes yet. Click + to add one!</p>
        }
 
          

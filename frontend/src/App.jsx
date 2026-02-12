@@ -20,7 +20,7 @@ export default function App() {
 
 
   function featchNotes(){
-     axios.get("http://localhost:3000/notes")
+     axios.get("https://notes-app-5-8zq8.onrender.com//notes")
 
     .then(res=>{
       setnotes(res.data.notes)
@@ -42,7 +42,7 @@ function handleDelete(noteid){
 
  
 
-  axios.delete("http://localhost:3000/notes/"+noteid)
+  axios.delete("https://notes-app-5-8zq8.onrender.com/notes/"+noteid)
   .then(res=>{
     console.log(res.data)
 
@@ -58,7 +58,7 @@ function handleDelete(noteid){
 
   const{title,description}=e.target.elements
 
-  axios.post("http://localhost:3000/notes",{
+  axios.post("https://notes-app-5-8zq8.onrender.com/notes",{
     title:title.value,
     description:description.value
   })
